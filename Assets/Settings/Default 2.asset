@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7c947c13b30684ab5a662e0f3e484e, type: 3}
+  m_Name: Default 2
+  m_EditorClassIdentifier: 
+  width: 2560
+  height: 1440
+  numAgents: 1000000
+  stepsPerTick: 1
+  agentSpeed: 200
+  agentTurnRateDeg: 360
+  sensorAngleDeg: 30
+  sensorOffset: 30
+  sensorSize: 1
+  agentColor: {r: 0, g: 1, b: 0.47127318, a: 1}
+  trailWeight: 100
+  decayRate: 3
+  diffuseRate: 10
