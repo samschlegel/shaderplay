@@ -21,6 +21,7 @@ public class SlimeShaderBehaviour: MonoBehaviour
 
     public RenderTexture trailMap;
     public RenderTexture diffusedTrailMap;
+    public RenderTexture outputTexture;
 
     public SlimeSettings settings;
     
@@ -78,9 +79,20 @@ public class SlimeShaderBehaviour: MonoBehaviour
         shader.SetInt("num_agents", settings.numAgents);
     }
 
+    private void SwapTrails()
+    {
+        var temp = trailMap;
+        trailMap = diffusedTrailMap;
+        diffusedTrailMap = trailMap;
+        shader.SetTexture(0, "trail", trailMap);
+        shader.SetTexture(1, "trail", trailMap);
+        shader.SetTexture(0, "diffused_trail", diffusedTrailMap);
+        shader.SetTexture(1, "diffused_trail", diffusedTrailMap);
+    }
+
     private void FixedUpdate()
     {
-        shader.SetFloat("time", Time.time);
+        shader.SetFloat("time", Time.fixedTime);
         shader.SetFloat("delta_time", Time.fixedDeltaTime);
         shader.SetFloats("resolution", settings.width, settings.height);
         
@@ -102,15 +114,13 @@ public class SlimeShaderBehaviour: MonoBehaviour
         {
             ComputeHelper.Dispatch(shader, settings.numAgents, kernelIndex: 0);
             ComputeHelper.Dispatch(shader, settings.width, settings.height, kernelIndex: 1);
-            ComputeHelper.CopyRenderTexture(diffusedTrailMap, trailMap);
+            SwapTrails();
         }
-        
     }
 
-    private void OnRenderImage(RenderTexture src, RenderTexture dest)
+    private void Update()
     {
-        
-        Graphics.Blit(trailMap, dest);
+        Graphics.Blit(trailMap, outputTexture);
     }
 
     private void OnDestroy()

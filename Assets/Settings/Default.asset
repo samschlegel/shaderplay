@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7c947c13b30684ab5a662e0f3e484e, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  width: 256
-  height: 256
-  numAgents: 10000
-  stepsPerTick: 10
+  width: 1024
+  height: 1024
+  numAgents: 1000000
+  stepsPerTick: 5
   agentSpeed: 20
-  agentTurnRateDeg: 1
+  agentTurnRateDeg: 90
   sensorAngleDeg: 45
   sensorOffset: 5
   sensorSize: 1
